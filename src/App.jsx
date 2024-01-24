@@ -28,10 +28,9 @@ const App = () => {
 
   if (match && match.params) {
     const pokemonId = pokemonList.find(({ name }) => name === match.params.name).id
-    previous = pokemonList.find(({ id }) => id === pokemonId - 1)
-    next = pokemonList.find(({ id }) => id === pokemonId + 1)
+    previous = pokemonList.find(({ id }) => id === (pokemonId - 1))
+    next = pokemonList.find(({ id }) => id === (pokemonId + 1))
   }
-
   return (
     <Routes>
       <Route exact path="/" element={<PokemonList pokemonList={pokemonList} />} />
