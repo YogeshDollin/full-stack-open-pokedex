@@ -27,3 +27,9 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000
           command: npm run test:e2e
+      - name: Deploy to render
+        uses: sws2apps/render-deployment@main
+        with:
+          serviceId: srv-${{ secrets.POKEDOX_SERVICE_ID }}
+          apiKey: ${{ secrets.RENDER_API_KEY }}
+          multipleDeployment: false
