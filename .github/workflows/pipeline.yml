@@ -33,6 +33,7 @@ jobs:
       - name: Deploy to render
         uses: sws2apps/render-deployment@main
         with:
+          if: ${{github.event_name == 'push'}}
           serviceId: srv-${{ secrets.POKEDOX_SERVICE_ID }}
           apiKey: ${{ secrets.RENDER_API_KEY }}
           multipleDeployment: false
