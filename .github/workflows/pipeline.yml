@@ -51,6 +51,7 @@ jobs:
     need: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v4
       - name: build success
         if: ${{success()}}
         uses: rjstone/discord-webhook-notify@v1
