@@ -37,6 +37,20 @@ jobs:
           serviceId: srv-${{ secrets.POKEDOX_SERVICE_ID }}
           apiKey: ${{ secrets.RENDER_API_KEY }}
           multipleDeployment: false
+      - name: build success
+        if: ${{ success() }}
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: info
+          details: Build succeeded
+          webhookUrl:${{ secrets.DISCORD_WEBHOOK }}
+      - name: build failure
+        if: ${{ failure() }}
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: error
+          details: Build failed
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
