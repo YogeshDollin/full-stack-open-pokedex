@@ -31,9 +31,9 @@ jobs:
           wait-on: http://localhost:5000
           command: npm run test:e2e
       - name: Deploy to render
+        if: ${{github.event_name == 'push'}}
         uses: sws2apps/render-deployment@main
         with:
-          if: ${{github.event_name == 'push'}}
           serviceId: srv-${{ secrets.POKEDOX_SERVICE_ID }}
           apiKey: ${{ secrets.RENDER_API_KEY }}
           multipleDeployment: false
